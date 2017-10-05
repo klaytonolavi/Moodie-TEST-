@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moodie</title>
+  
+  <!-- references to bootstrap, CSS and google Fonts -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+</head>
+<body>
+
+  
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+<!--      <a class="navbar-brand" href="#">Login dropdown</a>-->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="btn-group" id="nav-btns" role="group" aria-label="Nav-btns">
+      <a href="index.html" class="btn btn-default" role="button"> Home</a>
+      <a href="second.html" class="btn btn-default" role="button"> Gallery</a>
+      <a href="third.html" class="btn btn-default" role="button"> Try Moodie</a>
+    </div>
+   
+      <ul class="navbar-form navbar-left" id="logo">
+        <div class="logo" style="color: white">
+          <p><img src="assets/images/moodie.png" alt="logo" width="" height="50px"></p>
+        </div>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+			<ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+								Login via
+								<div class="social-buttons">
+									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+								</div>
+                        or
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+										</div>
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputPassword2">Password</label>
+											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+										</div>
+										<div class="form-group">
+											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+										</div>
+										<div class="checkbox">
+											 <label>
+											 <input type="checkbox"> Keep me logged-in
+											 </label>
+										</div>
+								 </form>
+							</div>
+							<div class="bottom text-center">
+								New here ? <a href="#"><b>Join Us</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron">
+   <h3> Moodie is a facial recognition application. Users can take photos of themselves with their webcam and Moodie will analyze their facial
+     expression and display to the user what emotions their face is displaying. Make a game out of it by trying to match the emotions on the screen
+    or by trying to match others facial expressions based on pictures. </h3>
+</div>
+
+<div id="container-index" class="container">
+<div class="row1">
+  <div class="col-sm-6 col-md-6 col-lg-6" id="face-div">
+    <div class="thumbnail">
+      <br>
+      <img src="assets/images/Happy-Face.png" alt="happy-face" width="260" height="260">
+      <br>
+    </div>
+  </div>
+   <div class="col-sm-6 col-md-6 col-lg-6" id="results">
+    <div class="thumbnail">
+      <div class="caption">
+        <p><strong><u>Results:</u></strong> <br>
+          <br>
+          Happiness :<span style="margin-left: 1em;">60.66 </span><br>
+          <br>
+          Fear  :  <span style="margin-left: 1em;">4.158</span><br>
+          <br>
+          Surprised :<span style="margin-left: 1em;">20.11</span><br>
+          <br>
+          Anger :<span style="margin-left: 1em;">2.67</span><br>
+          <br>
+          Disgust :<span style="margin-left: 1em;">1.89</span><br>
+          <br>
+          Neutral :   <span style="margin-left: 1em;">10.76</span><br>
+          <br>
+          Sadness :   <span style="margin-left: 1em;">3.76</span><br>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+  		</div>
+	
+  	</div>
+  </div>
+  <br><br>
+    <footer class="footer">
+    <div class="footer-bottom">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="copyright">
+					© 2017, MOODY, All rights reserved
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="design">
+					 <a href="#">MOODY </a> |  <a target="_blank" href="https://github.com/plustim/Moodie">Github</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

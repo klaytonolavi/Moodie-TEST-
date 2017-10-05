@@ -1,0 +1,131 @@
+<script>
+  var allEmotions = ["sadness", "neutural", "disgust", "anger", "surprise", "fear", "happiness"];
+  var targetEmotion = allEmotions[Math.floor(Math.random() * allEmotions.length)];
+  console.log(targetEmotion);
+</script>
+
+<div class="jumbotron">
+        <h2>Use the webcam application below to take a picture of yourself. Moodie will give you results below.</h2>
+     </div>
+
+     <div class="panel panel-default top">
+            <div class="panel-heading top">
+              <h3 class="panel-title">Webcam Photo Taker</h3>
+            </div>
+            <div class="panel-body">
+
+              <style type="text/css">
+                form button, #save, #again { margin: 15px 8px; }
+                #my_camera { margin: auto; }
+              </style>
+
+              <div id="my_camera"></div>
+
+              <script type="text/javascript" src="assets/js/webcam.min.js"></script>
+
+              <!-- Configure a few settings and attach camera -->
+              <script language="JavaScript">
+                Webcam.set({
+                  width: 440,
+                  height: 330,
+                  dest_width: 440,
+                  dest_height: 330,
+                  crop_width: 330,
+                  crop_height: 330,
+                  image_format: 'jpeg',
+                  jpeg_quality: 80,
+                  flip_horiz: true
+                });
+                Webcam.attach( '#my_camera' );
+              </script>
+
+              <form>
+                <div id="pre_take_buttons">
+                  <!-- This button is shown before the user takes a snapshot -->
+                  <button type="button" class="btn btn-primary" onClick="preview_snapshot()"><span class="glyphicon glyphicon-camera"></span> Take Photo!</button>
+                </div>
+                <div id="post_take_buttons" style="display:none">
+                  <!-- These buttons are shown after a snapshot is taken -->
+                  <button type="button" class="btn btn-primary" onClick="cancel_preview()">re-take</button>  
+                  <button type="button" class="btn btn-primary" onClick="save_photo()" style="font-weight:bold;">submit</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+                <br>
+          <div class="panel panel-default results" id="results" style="display:none">
+                <div class="panel-heading top">Results</div>
+                <div class="panel-body" id="score">
+                    Happiness: <br>
+                    Fear: <br>
+                    Surprised: <br>
+                    Anger: <br>
+                    Disgust: <br>
+                    Neutral: <br>
+                    Sadness: <br>
+                </div>
+              </div>
+          <br>
+          	<!-- Code to handle taking the snapshot and displaying it locally -->
+            <script language="JavaScript">
+              // preload shutter audio clip
+              var shutter = new Audio();
+              shutter.autoplay = false;
+              shutter.src = navigator.userAgent.match(/Firefox/) ? 'assets/shutter.ogg' : 'assets/shutter.mp3';
+              
+              function preview_snapshot() {
+                // play sound effect
+                try { shutter.currentTime = 0; } catch(e) {;} // fails in IE
+                shutter.play();
+                
+                // freeze camera so user can preview current frame
+                Webcam.freeze();
+                
+                // swap button sets
+                document.getElementById('pre_take_buttons').style.display = 'none';
+                document.getElementById('post_take_buttons').style.display = '';
+              }
+              
+              function cancel_preview() {
+                // cancel preview freeze and return to live camera view
+                Webcam.unfreeze();
+                
+                // swap buttons back to first set
+                document.getElementById('pre_take_buttons').style.display = '';
+                document.getElementById('post_take_buttons').style.display = 'none';
+              }
+              
+              function save_photo() {
+                // actually snap photo (from preview freeze) and display it
+                Webcam.snap( function(data_uri) {
+                  
+                  // shut down camera, stop capturing
+                  Webcam.reset();
+
+                  // display image taken and loading ring
+                  $("#my_camera").html('<img src="'+data_uri+'"/>');
+                  $("#score").html('<img src="assets/images/loader.gif" ></div>');
+                  
+                  // show results
+                  document.getElementById('results').style.display = '';
+
+                  // send the image for testing
+                  $.post("/api/judge", {face: data_uri, target: targetEmotion}, function(data, status){
+                    // display the results of the test
+                    console.log(status, data);
+                    $("#score").html("You scored "+data.score+"% "+targetEmotion+"!<br><button class='btn btn-primary' id='save'>submit to gallery</button><br><button class='btn btn-primary' id='again'>play again</button>");
+                    $("#save").on("click", function(){
+                      $(this).hide();
+                      $.post("/api/save", {id:data.id, score: data.score, emotion: targetEmotion}, function(data, status){
+                        console.log(status, data);
+                      }).fail((error, data)=>{console.log(error, data)});
+                    })
+                  }).fail((error, data)=>{console.log(error, data)});
+                } );
+              }
+
+
+            </script>
+    </div>
+    <br><br><br>

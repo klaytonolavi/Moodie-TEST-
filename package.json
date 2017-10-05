@@ -1,0 +1,31 @@
+{
+  "name": "moodie",
+  "version": "1.0.0",
+  "description": "Moodie expression evaluation app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plustim/Moodie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plustim/Moodie/issues"
+  },
+  "homepage": "https://github.com/plustim/Moodie#readme",
+  "dependencies": {
+    "base64-to-image": "^1.0.2",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "https-post": "^0.1.1",
+    "mysql2": "^1.4.2",
+    "path": "^0.12.7",
+    "sequelize": "^4.13.3"
+  }
+}
